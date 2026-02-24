@@ -1,7 +1,7 @@
 {
     "interactionModel": {
         "languageModel": {
-            "invocationName": "navisonic",
+            "invocationName": "music server",
             "intents": [
                 {
                     "name": "AMAZON.CancelIntent",
@@ -78,8 +78,28 @@
                         }
                     ],
                     "samples": [
+                        "Play {playlist} playlist",
                         "Play the {playlist} playlist",
+                        "Play the playlist {playlist}",
                         "Start the {playlist} playlist"
+                    ]
+                },
+                {
+                    "name": "NaviSonicShufflePlaylist",
+                    "slots": [
+                        {
+                            "name": "playlist",
+                            "type": "playlist_names"
+                        }
+                    ],
+                    "samples": [
+                        "Shuffle the {playlist} playlist",
+                        "Shuffle and play the {playlist} playlist",
+                        "Play the {playlist} playlist on shuffle",
+                        "Play {playlist} playlist shuffled",
+                        "Start the {playlist} playlist on shuffle",
+                        "Put on the {playlist} playlist in shuffle mode",
+                        "Play a shuffled {playlist} playlist"
                     ]
                 },
                 {
@@ -194,17 +214,27 @@
                     "values": [
                         {
                             "name": {
-                                "value": "Background Music"
+                                "value": "Chip"
                             }
                         },
                         {
                             "name": {
-                                "value": "Rock Songs"
+                                "value": "Scampi"
                             }
                         },
                         {
                             "name": {
-                                "value": "Work Music"
+                                "value": "Mara"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Work"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Musicals"
                             }
                         }
                     ]
