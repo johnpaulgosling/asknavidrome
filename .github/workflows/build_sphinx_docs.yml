@@ -54,8 +54,8 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --global user.name 'Ross Stewart'
-          git config --global user.email 'rosskouk@users.noreply.github.com'
+          git config --global user.name 'John Paul Gosling'
+          git config --global user.email 'johnpaulgosling@users.noreply.github.com'
           git add docs/.gitkeep
           git add docs/.nojekyll
           git add *

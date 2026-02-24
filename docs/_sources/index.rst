@@ -288,7 +288,7 @@ accessible.
    .. code-block:: bash
 
       cd directory
-      git clone https://github.com/rosskouk/asknavidrome.git
+      git clone https://github.com/johnpaulgosling/asknavidrome.git
 
 
 #. Change directory to the skill folder
@@ -334,7 +334,7 @@ You can configure the service by passing environment variables to the *docker ru
    -e NAVI_API_PATH=/rest \
    -e NAVI_API_VER=1.16.1 \
    -e NAVI_DEBUG=0 \
-   ghcr.io/rosskouk/asknavidrome:<tag>
+   ghcr.io/johnpaulgosling/asknavidrome:<tag>
 
 If you intent to use the container to build a Kubernetes pod, I have created a side car container which can automatically configure and renew 
 TLS certificates with the Kubernetes Nginx Ingress.  `More information <https://github.com/rosskouk/docker-image-k8s-letsencrypt>`_.
