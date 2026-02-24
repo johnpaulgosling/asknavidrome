@@ -1,6 +1,6 @@
 # AskNavidrome
 
-[![Documentation Generator](https://github.com/johnpaulgosling/asknavidrome/actions/workflows/build_sphinx_docs.yml/badge.svg?branch=main)](https://github.com/johnpaulgosling/asknavidrome/actions/workflows/build_sphinx_docs.yml) [![Docker Container](https://github.com/johnpaulgosling/asknavidrome/actions/workflows/build_image.yml/badge.svg)](https://github.com/johnpaulgosling/asknavidrome/actions/workflows/build_image.yml)
+[![Docker Container](https://github.com/johnpaulgosling/asknavidrome/actions/workflows/build_image.yml/badge.svg)](https://github.com/johnpaulgosling/asknavidrome/actions/workflows/build_image.yml)
 
 
 **AskNavidrome** is an Alexa skill which allows you to play music hosted on a SubSonic API compatible media server, like Navidrome.
