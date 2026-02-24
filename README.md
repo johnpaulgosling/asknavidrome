@@ -2,6 +2,7 @@
 
 [![Docker Container](https://github.com/johnpaulgosling/asknavidrome/actions/workflows/build_image.yml/badge.svg)](https://github.com/johnpaulgosling/asknavidrome/actions/workflows/build_image.yml)
 
+This fork adds the ability to play a shuffled playlist with one voice command. For example, "Shuffle the <playlist> playlist".
 
 **AskNavidrome** is an Alexa skill which allows you to play music hosted on a SubSonic API compatible media server, like Navidrome.
 
