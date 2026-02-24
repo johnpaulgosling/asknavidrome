@@ -14,4 +14,4 @@ streaming services like Amazon Music or Spotify.  AskNavidrome allows you to:
 - Actually use the music collection you have already paid for!
 - Run the service on a PC directly or inside a Docker container.
 
-See the full documentation [here](https://johnpaulgosling.github.io/asknavidrome)
+See the full documentation [here](https://rosskouk.github.io/asknavidrome)
