@@ -163,6 +163,19 @@
                     ]
                 },
                 {
+                    "name": "NaviSonicPlaySong",
+                    "slots": [
+                        {
+                            "name": "song",
+                            "type": "AMAZON.MusicRecording"
+                        }
+                    ],
+                    "samples": [
+                        "Play the song {song}",
+                        "Play {song}"
+                    ]
+                },
+                {
                     "name": "NaviSonicPlayFavouriteSongs",
                     "slots": [],
                     "samples": [
