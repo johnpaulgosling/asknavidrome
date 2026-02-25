@@ -224,6 +224,10 @@ class MediaQueue:
 
         self.logger.debug('In enqueue_next_track()')
 
+        if not self.buffer:
+            self.logger.debug('Buffer is empty, nothing to enqueue')
+            return None
+
         return self.buffer.popleft()
 
     def clear(self) -> None:

@@ -916,6 +916,10 @@ class PlaybackNearlyFinishedHandler(AbstractRequestHandler):
         logger.info('Queuing next track...')
         track_details = play_queue.enqueue_next_track()
 
+        if track_details is None:
+            logger.debug('No next track to enqueue, end of queue reached')
+            return handler_input.response_builder.response
+
         return controller.start_playback('continue', None, None, track_details, handler_input)
 
 
