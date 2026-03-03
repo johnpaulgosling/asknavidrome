@@ -27,7 +27,7 @@ sb = SkillBuilder()
 
 # Setup Logging
 logger = logging.getLogger()  # Create logger
-level = logging.getLevelName('DEBUG')
+level = logging.getLevelName('WARNING')
 logger.setLevel(level)  # Set logger log level
 
 log_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -51,7 +51,7 @@ try:
         # if this is not set the web service will respond to any skill.
         sb.skill_id = os.getenv('NAVI_SKILL_ID')
 
-        logger.info(f'Skill ID set to: {sb.skill_id}')
+        logger.debug(f'Skill ID set')
 
     else:
         raise NameError
@@ -87,7 +87,7 @@ try:
     if 'NAVI_USER' in os.environ:
         navidrome_user = os.getenv('NAVI_USER')
 
-        logger.info(f'The Navidrome user name is set to: {navidrome_user}')
+        logger.debug(f'The Navidrome user name is set')
 
     else:
         raise NameError
@@ -146,6 +146,7 @@ except NameError as err:
 logger.debug('Configuration has been successfully loaded')
 
 # Set log level based on config value
+navidrome_log_level = 0  # Default to level 0 (WARNING) if NAVI_DEBUG is not set
 if 'NAVI_DEBUG' in os.environ:
     navidrome_log_level = int(os.getenv('NAVI_DEBUG'))
 
