@@ -2,7 +2,7 @@
 
 [![Docker Container](https://github.com/johnpaulgosling/asknavidrome/actions/workflows/build_image.yml/badge.svg)](https://github.com/johnpaulgosling/asknavidrome/actions/workflows/build_image.yml)
 
-This fork of [rosskouk's AskNavidrome v0.9](https://github.com/rosskouk/asknavidrome/releases/tag/v0.9) adds two new features and one bug fix:
+This fork of [rosskouk's AskNavidrome v1.2.2](https://github.com/rosskouk/asknavidrome/releases/tag/v1.2.2) adds two new features and one bug fix:
 
 - **Shuffle a playlist by name** — Search your Navidrome playlists by name and play them in a randomised order. Example phrases:
   - "Shuffle the *playlist* playlist"
