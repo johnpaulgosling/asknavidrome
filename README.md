@@ -23,8 +23,6 @@ You can stream your own music collection to your Echo devices without the restri
 streaming services like Amazon Music or Spotify.  AskNavidrome allows you to:
 
 - Skip backwards and forwards in your current queue or playlist without limitation.
-- Avoid paying subscription costs.
-- Avoid being forced to listen to adverts at regular intervals.
 - Actually use the music collection you have already paid for!
 - Run the service on a PC directly or inside a Docker container.
 
