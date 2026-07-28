@@ -1,5 +1,6 @@
 from datetime import datetime
-from flask import Flask, render_template
+from flask import Flask, abort, render_template, request
+import hmac
 import logging
 from multiprocessing import Process
 from multiprocessing.managers import BaseManager
@@ -42,7 +43,7 @@ logger.addHandler(handler)
 # Get service configuration
 #
 
-logger.info('AskNavidrome 0.10!')
+logger.info('AskNavidrome 1.2.3!')
 logger.debug('Getting configuration from the environment...')
 
 try:
@@ -175,6 +176,8 @@ if 'NAVI_DEBUG' in os.environ:
         navidrome_log_level = 0
         logger.setLevel(logging.WARNING)
         logger.warning('Log level set to WARNING')
+
+navidrome_debug_token = os.getenv('NAVI_DEBUG_TOKEN')
 
 # Create a shareable queue than can be updated by multiple threads to enable larger playlists
 # to be returned in the back ground avoiding the Amazon 8 second timeout
@@ -1128,7 +1131,9 @@ class LoggingRequestInterceptor(AbstractRequestInterceptor):
     """
 
     def process(self, handler_input: HandlerInput):
-        logger.debug(f'Request received: {handler_input.request_envelope.request}')
+        request_type = get_request_type(handler_input)
+        intent_name = get_intent_name(handler_input) if request_type == 'IntentRequest' else None
+        logger.debug('Request metadata: type=%s intent=%s', request_type, intent_name)
 
 
 class LoggingResponseInterceptor(AbstractResponseInterceptor):
@@ -1138,7 +1143,11 @@ class LoggingResponseInterceptor(AbstractResponseInterceptor):
     """
 
     def process(self, handler_input: HandlerInput, response: Response):
-        logger.debug(f'Response sent: {response}')
+        directives = len(response.directives) if response and response.directives else 0
+        has_output_speech = bool(response and response.output_speech)
+        should_end_session = response.should_end_session if response else None
+        logger.debug('Response metadata: directives=%d has_output_speech=%s should_end_session=%s',
+                     directives, has_output_speech, should_end_session)
 
 #
 # Functions
@@ -1243,7 +1252,17 @@ sa.register(app=app, route='/')
 # Enable queue and history diagnostics
 if navidrome_log_level == 3:
     logger.warning('AskNavidrome debugging has been enabled, this should only be used when testing!')
-    logger.warning('The /buffer, /queue and /history http endpoints are available publicly!')
+    if not navidrome_debug_token:
+        logger.warning('NAVI_DEBUG_TOKEN is not set. Debug endpoints are disabled.')
+    else:
+        logger.warning('The /buffer, /queue and /history http endpoints are enabled and require token auth.')
+
+    def validate_debug_token() -> None:
+        if not navidrome_debug_token:
+            abort(404)
+        supplied_token = request.args.get('token')
+        if not supplied_token or not hmac.compare_digest(supplied_token, navidrome_debug_token):
+            abort(403)
 
     @app.route('/queue')
     def view_queue():
@@ -1252,6 +1271,7 @@ if navidrome_log_level == 3:
         Creates a tabulated page containing the contents of the play_queue.queue deque.
         """
 
+        validate_debug_token()
         current_track = play_queue.get_current_track()
 
         return render_template('table.html', title='AskNavidrome - Queued Tracks',
@@ -1264,6 +1284,7 @@ if navidrome_log_level == 3:
         Creates a tabulated page containing the contents of the play_queue.history deque.
         """
 
+        validate_debug_token()
         current_track = play_queue.get_current_track()
 
         return render_template('table.html', title='AskNavidrome - Track History',
@@ -1276,6 +1297,7 @@ if navidrome_log_level == 3:
         Creates a tabulated page containing the contents of the play_queue.buffer deque.
         """
 
+        validate_debug_token()
         current_track = play_queue.get_current_track()
 
         return render_template('table.html', title='AskNavidrome - Buffered Tracks',

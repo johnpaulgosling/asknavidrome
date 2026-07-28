@@ -29,7 +29,8 @@
                 "NAVI_PORT": "443",
                 "NAVI_API_PATH": "/rest",
                 "NAVI_API_VER": "1.16.1",
-                "NAVI_DEBUG": "3"
+                "NAVI_DEBUG": "3",
+                "NAVI_DEBUG_TOKEN": "<debug-token>"
             },
             "args": [
                 "run",
