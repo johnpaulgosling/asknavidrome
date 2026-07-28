@@ -31,3 +31,5 @@ See the full documentation [here](https://rosskouk.github.io/asknavidrome). Note
 ```yaml
 image: 'ghcr.io/johnpaulgosling/asknavidrome:latest'
 ```
+
+If you enable level 3 debugging (``NAVI_DEBUG=3``), set ``NAVI_DEBUG_TOKEN`` and pass it as a query parameter when using ``/queue``, ``/history`` and ``/buffer``.
