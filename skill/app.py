@@ -156,8 +156,6 @@ if 'NAVI_DEBUG' in os.environ:
         logger.setLevel(logging.WARNING)
         logger.warning('Log level set to WARNING')
 
-navidrome_debug_token = os.getenv('NAVI_DEBUG_TOKEN')
-
     elif navidrome_log_level == 1:
         # Info messages and higher
         logger.setLevel(logging.INFO)
@@ -178,6 +176,8 @@ navidrome_debug_token = os.getenv('NAVI_DEBUG_TOKEN')
         navidrome_log_level = 0
         logger.setLevel(logging.WARNING)
         logger.warning('Log level set to WARNING')
+
+navidrome_debug_token = os.getenv('NAVI_DEBUG_TOKEN')
 
 # Create a shareable queue than can be updated by multiple threads to enable larger playlists
 # to be returned in the back ground avoiding the Amazon 8 second timeout
